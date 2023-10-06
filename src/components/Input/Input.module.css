@@ -1,0 +1,29 @@
+.label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.input {
+    max-width: 200px;
+    width: 100%;
+    padding-left: 8px ;
+    background-color: grey;
+    border: none;
+    color: darksalmon;
+}
+
+.input:focus {
+    border: none;
+    outline: darksalmon solid 2px;
+}
+
+.error {
+    color: #dc183f;
+    background-color: #ff7b64;
+}
+.error:focus {
+    outline-color: #dc183f;
+}

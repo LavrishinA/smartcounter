@@ -1,0 +1,16 @@
+.btn {
+    padding: 8px 16px;
+    font-size: 24px;
+    color:darksalmon;
+    border: none;
+    border-radius: 10px;
+    background-color: grey;
+    cursor: pointer;
+}
+.btn:focus {
+    border: none;
+    outline: darksalmon solid 2px;
+}
+.btn:disabled {
+    opacity: .5;
+}

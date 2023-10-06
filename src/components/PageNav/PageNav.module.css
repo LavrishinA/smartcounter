@@ -1,0 +1,17 @@
+.nav ul {
+    padding: 32px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+}
+
+.nav li {
+    list-style: none;
+}
+
+.nav :global(.active) {
+    border: 2px solid dodgerblue;
+    background-color: darksalmon;
+    color: grey
+}
