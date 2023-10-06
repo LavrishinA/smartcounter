@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/smartcounter/static/css/main.bc7e2114.css",
+    "main.js": "/smartcounter/static/js/main.32a5cf70.js",
+    "static/js/787.e458d2a5.chunk.js": "/smartcounter/static/js/787.e458d2a5.chunk.js",
+    "index.html": "/smartcounter/index.html",
+    "main.bc7e2114.css.map": "/smartcounter/static/css/main.bc7e2114.css.map",
+    "main.32a5cf70.js.map": "/smartcounter/static/js/main.32a5cf70.js.map",
+    "787.e458d2a5.chunk.js.map": "/smartcounter/static/js/787.e458d2a5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc7e2114.css",
+    "static/js/main.32a5cf70.js"
+  ]
+}
