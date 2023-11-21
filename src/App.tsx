@@ -15,14 +15,14 @@ function App() {
     const [start, setStart] = useState<number>(0)
     const [disableBtn, setDisableBtn] = useState(false)
 
-    useEffect(() => {
-        const maxLocalStorageValue = localStorage.getItem("max")
-        const startLocalStorageValue = localStorage.getItem("start")
-        if (!maxLocalStorageValue || !startLocalStorageValue) return
-        setMax(+maxLocalStorageValue)
-        setStart(+startLocalStorageValue)
-
-    }, []);
+    // useEffect(() => {
+    //     const maxLocalStorageValue = localStorage.getItem("max")
+    //     const startLocalStorageValue = localStorage.getItem("start")
+    //     if (!maxLocalStorageValue || !startLocalStorageValue) return
+    //     setMax(+maxLocalStorageValue)
+    //     setStart(+startLocalStorageValue)
+    //
+    // }, []);
 
     const incrementCounterHandler = () => {
         setCounterValue(n => n + 1)
@@ -35,8 +35,8 @@ function App() {
     const submitSetHandler = () => {
         setCounterValue(start)
         setDisableBtn(false)
-        localStorage.setItem("start", JSON.stringify(start))
-        localStorage.setItem("max", JSON.stringify(max))
+        // localStorage.setItem("start", JSON.stringify(start))
+        // localStorage.setItem("max", JSON.stringify(max))
     }
 
     const disableCounterBtnHandler = () => {
