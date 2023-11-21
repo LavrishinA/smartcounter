@@ -1,19 +1,23 @@
 import './App.css';
 import {BrowserRouter, NavLink, Route, Routes} from "react-router-dom";
-
 import Counter from "./components/Counter/Counter";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Form from "./components/Form/Form";
 import PageNav from "./components/PageNav/PageNav";
 import Button from "./components/Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {CounterType, disable, increment, reset} from "./store/reducer";
+import {Store} from "./store/store";
 
 
 function App() {
-    const [counterValue, setCounterValue] = useState<number>(0)
-
-    const [max, setMax] = useState<number>(5)
-    const [start, setStart] = useState<number>(0)
-    const [disableBtn, setDisableBtn] = useState(false)
+    const {
+        counterValue,
+        max,
+        start,
+        isDisable
+    } = useSelector<Store, CounterType>(state => state.counter)
+    const dispatch = useDispatch()
 
     // useEffect(() => {
     //     const maxLocalStorageValue = localStorage.getItem("max")
@@ -25,22 +29,21 @@ function App() {
     // }, []);
 
     const incrementCounterHandler = () => {
-        setCounterValue(n => n + 1)
+        dispatch(increment())
     }
 
     const resetCounterHandler = () => {
-        setCounterValue(start)
+      dispatch(reset())
     }
 
     const submitSetHandler = () => {
-        setCounterValue(start)
-        setDisableBtn(false)
+        dispatch(disable(false))
         // localStorage.setItem("start", JSON.stringify(start))
         // localStorage.setItem("max", JSON.stringify(max))
     }
 
     const disableCounterBtnHandler = () => {
-        setDisableBtn(true)
+        dispatch(disable(true))
     }
 
     return (
@@ -54,14 +57,12 @@ function App() {
                             max={max}
                             start={start}
                             counterValue={counterValue}
-                            disableBtn={disableBtn}
+                            disableBtn={isDisable}
                             onIncrement={incrementCounterHandler}
                             onReset={resetCounterHandler}/>
                         <Form max={max}
                               start={start}
-                              disableBtn={disableBtn}
-                              onSetMax={setMax}
-                              onSetStart={setStart}
+                              disableBtn={isDisable}
                               onSubmit={submitSetHandler}
                               onDisable={disableCounterBtnHandler}/>
 
@@ -71,7 +72,7 @@ function App() {
                         <Route index element={<Counter max={max}
                                                        start={start}
                                                        counterValue={counterValue}
-                                                       disableBtn={disableBtn}
+                                                       disableBtn={isDisable}
                                                        onIncrement={incrementCounterHandler}
                                                        onReset={resetCounterHandler}>
                             <NavLink to="settings"><Button name="Settings"/></NavLink>
@@ -80,9 +81,7 @@ function App() {
 
                         <Route path={"settings"} element={<Form max={max}
                                                                 start={start}
-                                                                disableBtn={disableBtn}
-                                                                onSetMax={setMax}
-                                                                onSetStart={setStart}
+                                                                disableBtn={isDisable}
                                                                 onSubmit={submitSetHandler}
                                                                 onDisable={disableCounterBtnHandler}/>}/>
                     </Route>

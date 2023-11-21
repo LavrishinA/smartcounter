@@ -10,7 +10,6 @@ type InputPropsType = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInpu
 }
 
 const Input: React.FC<InputPropsType> = ({onChangeInput, onDisable, name, isValid, ...rest}) => {
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = +e.currentTarget.value
         onChangeInput(value)

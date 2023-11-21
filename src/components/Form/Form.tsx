@@ -2,30 +2,38 @@ import React, {FormEvent} from 'react';
 import Input from "../Input/Input";
 import Filed from "../Field/Filed";
 import Button from "../Button/Button";
-import {useNavigate, useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setMax, setStart} from "../../store/reducer";
 
 
 type FormPropsType = {
     max: number
     start: number
     disableBtn: boolean
-    onSetMax: (n: number) => void
-    onSetStart: (n: number) => void
-    onSubmit: () => void
     onDisable: () => void
+    onSubmit: () => void
 }
 
-const Form: React.FC<FormPropsType> = ({onSubmit, disableBtn, onSetStart, onSetMax, start, max, ...rest}) => {
+const Form: React.FC<FormPropsType> = ({onSubmit, disableBtn, start, max, ...rest}) => {
+    const dispatch = useDispatch()
+
     const navigate = useNavigate()
     const {pathname} = useLocation()
+
     const submitHandler = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if(pathname === "/counter2/settings") navigate("/counter2")
         onSubmit()
     }
+
+    const startValueHandler = (value: number) => dispatch(setStart(value))
+    const maxValueHandler = (value: number) => dispatch(setMax(value))
+
     const isValidMax = max <= 0 || max <= start
     const isValidStart = start < 0 || start >= max
+
 
     return (
         <form onSubmit={submitHandler} className={`content`}>
@@ -34,14 +42,14 @@ const Form: React.FC<FormPropsType> = ({onSubmit, disableBtn, onSetStart, onSetM
                 <Input name="Max value"
                        value={max}
                        type="number"
-                       onChangeInput={onSetMax}
                        isValid={isValidMax}
+                       onChangeInput={maxValueHandler}
                        {...rest}/>
                 <Input name="Start value"
                        value={start}
                        type="number"
-                       onChangeInput={onSetStart}
                        isValid={isValidStart}
+                       onChangeInput={startValueHandler}
                        {...rest}/>
             </Filed>
             <Filed>
